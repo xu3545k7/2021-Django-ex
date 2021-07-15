@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} 新聞摘要 {% endblock %}
+{% block headmessage %} 我的新聞摘要 {% endblock %}
+{% block main %}
+	<hr>
+	<table class="table table-hover">
+		<tr><td>編號</td><td>新聞標題</td><td>張貼日期</td>
+			{% if request.user.is_superuser %}
+				<td>管理</td>
+			{% endif %}
+		</tr>
+	{% for post in posts %}
+		<tr>
+            <td>{{post.id}}</td>
+			{% if request.user.is_authenticated %}
+			<td><a  href="/show/{{post.id}}">{{post.title}}</a></td>
+			{% else %}
+			<td>{{post.title}}</td>
+			{% endif %}
+			<td>{{post.pub_date}}</td>
+			{% if request.user.is_superuser %}
+				<td><a class='btn btn-warning' href="/delete/{{post.id}}">刪除</a></td>
+			{% endif %}	
+		</tr>
+    {% endfor %}
+	</table>
+{% endblock %}

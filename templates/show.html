@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} 新聞摘要 {% endblock %}
+{% block headmessage %} 我的新聞摘要 {% endblock %}
+{% block main %}
+	<hr>
+	<table class="table table-hover">
+		<tr>
+			<td>{{post.title}}</a></td>
+		</tr>
+        <tr>
+            <td>
+                {{post.pub_date}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{post.content| linebreaks}}
+            </td>
+        </tr>
+	</table>
+{% endblock %}
